@@ -1,4 +1,4 @@
-# Cybersecurity-skills
+# Cyber Hardening-skills
 # Antigravity (AGY) Skill Book
 
 A collection of production-ready agentic skills, document layout engines, and governance configurations for Google Antigravity (AGY).
