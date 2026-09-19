@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sync targets.json with live endoflife.date API
+Sync targets.json with live endoflife.date & Homebrew Formulae APIs
 """
 import os
 import json
@@ -14,111 +14,89 @@ TARGETS_FILE = os.path.join(SCRIPT_DIR, "targets.json")
 
 def parse_cycle_version(cycle_str):
     m = re.findall(r"\d+", str(cycle_str))
-    if len(m) >= 2:
-        return (int(m[0]), int(m[1]))
-    elif len(m) == 1:
-        return (int(m[0]), 0)
-    return None
+    return (int(m[0]), int(m[1])) if len(m) >= 2 else ((int(m[0]), 0) if m else None)
 
 def fetch_slug_data(slug):
     url = f"https://endoflife.date/api/{slug}.json"
     req = urllib.request.Request(url, headers={"User-Agent": "env-audit/1.0"})
     try:
         with urllib.request.urlopen(req, timeout=5) as resp:
+            return slug, json.loads(resp.read().decode())
+    except Exception:
+        return slug, None
+
+def fetch_brew_data(formula):
+    url = f"https://formulae.brew.sh/api/formula/{formula}.json"
+    req = urllib.request.Request(url, headers={"User-Agent": "env-audit/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=5) as resp:
             data = json.loads(resp.read().decode())
-            return slug, data, None
-    except Exception as e:
-        return slug, None, str(e)
+            return formula, data.get("versions", {}).get("stable")
+    except Exception:
+        return formula, None
 
 def sync():
     if not os.path.exists(TARGETS_FILE):
         print(f"Error: {TARGETS_FILE} not found.")
         return
 
-    with open(TARGETS_FILE, "r") as f:
+    with open(TARGETS_FILE, "r", encoding="utf-8") as f:
         targets = json.load(f)
 
-    slug_items = [t for t in targets if "eol_slug" in t]
-    unique_slugs = list(set(t["eol_slug"] for t in slug_items))
-    print(f"Fetching live data from endoflife.date for {len(unique_slugs)} targets...")
+    unique_slugs = list({t["eol_slug"] for t in targets if "eol_slug" in t})
+    unique_brews = list({t["brew_formula"] for t in targets if "brew_formula" in t})
+    print(f"Fetching live data for {len(unique_slugs)} EOL slugs and {len(unique_brews)} Homebrew formulae...")
 
-    slug_data_map = {}
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        results = list(ex.map(fetch_slug_data, unique_slugs))
-        for slug, data, err in results:
+    slug_data_map, brew_data_map = {}, {}
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        for slug, data in ex.map(fetch_slug_data, unique_slugs):
             if data:
                 slug_data_map[slug] = data
-            else:
-                print(f"  [Warning] Failed to fetch {slug}: {err}")
+        for formula, ver in ex.map(fetch_brew_data, unique_brews):
+            if ver:
+                brew_data_map[formula] = ver
 
     today = datetime.date.today().isoformat()
     updated_count = 0
-
     print("\nSynchronizing target definitions:")
     for item in targets:
         slug = item.get("eol_slug")
-        if not slug or slug not in slug_data_map:
-            continue
+        changed = False
 
-        cycles = slug_data_map[slug]
-        # Sort cycles
-        active_lts = []
-        active_supported = []
-        eol_cycles = []
-
-        for c in cycles:
-            eol_val = c.get("eol")
-            cycle_name = str(c.get("cycle"))
-            is_lts = bool(c.get("lts"))
-
-            is_eol = False
-            if isinstance(eol_val, str) and eol_val <= today:
-                is_eol = True
-            elif eol_val is True:
-                is_eol = True
-
-            if is_eol:
-                eol_cycles.append(cycle_name)
-            else:
-                if is_lts:
+        if slug and slug in slug_data_map:
+            active_lts, active_supported = [], []
+            for c in slug_data_map[slug]:
+                eol_val, cycle_name = c.get("eol"), str(c.get("cycle"))
+                if (isinstance(eol_val, str) and eol_val <= today) or eol_val is True:
+                    continue
+                if c.get("lts"):
                     active_lts.append(cycle_name)
                 active_supported.append(cycle_name)
 
-        old_lts = item.get("lts", "")
-        if active_lts:
-            new_lts = " / ".join(active_lts[:2]) + " LTS"
-        elif active_supported:
-            new_lts = " / ".join(active_supported[:2])
-        else:
-            new_lts = old_lts
+            old_lts, old_eol = item.get("lts", ""), item.get("eol_below")
+            new_lts = (" / ".join(active_lts[:2]) + " LTS") if active_lts else (" / ".join(active_supported[:2]) if active_supported else old_lts)
+            parsed = parse_cycle_version(active_supported[-1]) if active_supported else None
+            new_eol = list(parsed) if parsed else old_eol
 
-        old_eol_below = item.get("eol_below")
-        new_eol_below = old_eol_below
-        if active_supported:
-            lowest_supported = active_supported[-1]
-            parsed = parse_cycle_version(lowest_supported)
-            if parsed:
-                new_eol_below = list(parsed)
+            if (new_eol != old_eol) or (new_lts != old_lts):
+                item["eol_below"], item["lts"] = new_eol, new_lts
+                changed = True
 
-        changed = False
-        if new_eol_below and new_eol_below != old_eol_below:
-            item["eol_below"] = new_eol_below
-            changed = True
+        bf = item.get("brew_formula")
+        if bf and bf in brew_data_map:
+            if item.get("brew_latest") != brew_data_map[bf]:
+                item["brew_latest"] = brew_data_map[bf]
+                changed = True
 
-        if new_lts and new_lts != old_lts:
-            item["lts"] = new_lts
-            changed = True
-
-        status_str = f"LTS: {item.get('lts')} | eol_below: {item.get('eol_below')}"
+        status_str = f"LTS: {item.get('lts')} | Brew: {item.get('brew_latest')}"
         if changed:
             updated_count += 1
-            print(f"  [UPDATED] {item['name']} ({slug}) -> {status_str}")
+            print(f"  [UPDATED] {item['name']} -> {status_str}")
         else:
-            print(f"  [UP-TO-DATE] {item['name']} ({slug}) -> {status_str}")
+            print(f"  [UP-TO-DATE] {item['name']} -> {status_str}")
 
     with open(TARGETS_FILE, "w", encoding="utf-8") as f:
         json.dump(targets, f, ensure_ascii=False, indent=2)
-
     print(f"\nSuccessfully synchronized! ({updated_count} targets updated, saved to targets.json)")
 
 if __name__ == "__main__":

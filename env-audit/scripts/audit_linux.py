@@ -17,7 +17,7 @@ def get_os_info():
     distro = "Linux"
     family = "debian"
     if os.path.exists("/etc/os-release"):
-        with open("/etc/os-release") as f:
+        with open("/etc/os-release", encoding="utf-8") as f:
             content = f.read().lower()
             for line in content.splitlines():
                 if line.startswith("pretty_name="):
@@ -52,13 +52,10 @@ def get_tool_version(tool_item):
     eol_below = tool_item.get("eol_below")
     if eol_below and ver != "Installed":
         m = re.search(r"(\d+)\.(\d+)", ver)
-        if m:
-            try:
-                major, minor = int(m.group(1)), int(m.group(2))
-                if (major, minor) < tuple(eol_below):
-                    is_eol = True
-            except Exception:
-                pass
+        try:
+            is_eol = bool(m and (int(m.group(1)), int(m.group(2))) < tuple(eol_below))
+        except Exception:
+            pass
                 
     return {
         "path": path,
@@ -73,36 +70,40 @@ def get_outdated_packages(family):
     if family == "debian" and shutil.which("apt"):
         try:
             proc = subprocess.run(["apt", "list", "--upgradable"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=3)
-            if proc.returncode == 0:
-                for line in proc.stdout.splitlines():
-                    if "upgradable from:" in line:
-                        parts = line.split()
-                        pkg_name = parts[0].split("/")[0]
-                        candidate_ver = parts[1]
-                        installed_ver = line.split("upgradable from:")[1].strip(" ]\n")
-                        outdated[pkg_name] = {"installed": installed_ver, "candidate": candidate_ver}
+            lines = proc.stdout.splitlines() if proc.returncode == 0 else []
+            for line in lines:
+                if "upgradable from:" not in line:
+                    continue
+                parts = line.split()
+                pkg_name = parts[0].split("/")[0]
+                candidate_ver = parts[1]
+                installed_ver = line.split("upgradable from:")[1].strip(" ]\n")
+                outdated[pkg_name] = {"installed": installed_ver, "candidate": candidate_ver}
         except Exception:
             pass
-    elif family == "redhat":
+        return outdated
+
+    if family == "redhat":
         pkg_mgr = shutil.which("dnf") or shutil.which("yum")
-        if pkg_mgr:
-            try:
-                proc = subprocess.run([pkg_mgr, "check-update", "--quiet"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=5)
-                if proc.returncode in (0, 100) and proc.stdout:
-                    for line in proc.stdout.splitlines():
-                        parts = line.strip().split()
-                        if len(parts) >= 2:
-                            pkg_name = parts[0].split(".")[0]
-                            outdated[pkg_name] = {"candidate": parts[1]}
-            except Exception:
-                pass
+        if not pkg_mgr:
+            return outdated
+        try:
+            proc = subprocess.run([pkg_mgr, "check-update", "--quiet"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=5)
+            lines = proc.stdout.splitlines() if (proc.returncode in (0, 100) and proc.stdout) else []
+            for line in lines:
+                parts = line.strip().split()
+                if len(parts) >= 2:
+                    pkg_name = parts[0].split(".")[0]
+                    outdated[pkg_name] = {"candidate": parts[1]}
+        except Exception:
+            pass
     return outdated
 
 def main():
     os_name, kernel, family = get_os_info()
     targets = []
     if os.path.exists(TARGETS_FILE):
-        with open(TARGETS_FILE) as f:
+        with open(TARGETS_FILE, encoding="utf-8") as f:
             targets = json.load(f)
 
     results = {}

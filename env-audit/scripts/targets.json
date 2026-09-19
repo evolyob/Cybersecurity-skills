@@ -6,12 +6,14 @@
     "lts": "3.14 / 3.13",
     "eol_below": [
       3,
-      13
+      10
     ],
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "python@3.13",
+    "brew_latest": "3.13.15"
   },
   {
     "name": "node",
@@ -19,41 +21,47 @@
     "eol_slug": "nodejs",
     "lts": "26 / 24 LTS",
     "eol_below": [
-      24,
+      22,
       0
     ],
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "node",
+    "brew_latest": "26.9.0"
   },
   {
     "name": "go",
     "category": "Languages & Runtimes",
     "eol_slug": "go",
-    "lts": "1.26 / 1.25",
+    "lts": "1.27 / 1.26",
     "eol_below": [
       1,
-      25
+      26
     ],
     "flags": [
       "version",
       "--version"
-    ]
+    ],
+    "brew_formula": "go",
+    "brew_latest": "1.27.1"
   },
   {
     "name": "rustc",
     "category": "Languages & Runtimes",
     "eol_slug": "rust",
-    "lts": "1.97",
+    "lts": "1.98",
     "flags": [
       "--version",
       "-v"
     ],
     "eol_below": [
       1,
-      97
-    ]
+      98
+    ],
+    "brew_formula": "rust",
+    "brew_latest": "1.98.1"
   },
   {
     "name": "java",
@@ -61,7 +69,7 @@
     "eol_slug": "oracle-jdk",
     "lts": "25 / 21 LTS",
     "eol_below": [
-      21,
+      17,
       0
     ],
     "flags": [
@@ -81,7 +89,9 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "ruby",
+    "brew_latest": "4.0.7"
   },
   {
     "name": "perl",
@@ -95,7 +105,9 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "perl",
+    "brew_latest": "5.44.0"
   },
   {
     "name": "php",
@@ -104,20 +116,22 @@
     "lts": "8.5 / 8.4",
     "eol_below": [
       8,
-      4
+      2
     ],
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "php",
+    "brew_latest": "8.5.10"
   },
   {
     "name": "dotnet",
     "category": "Languages & Runtimes",
     "eol_slug": "dotnet",
-    "lts": "10 LTS",
+    "lts": "10 / 8 LTS",
     "eol_below": [
-      10,
+      8,
       0
     ],
     "flags": [
@@ -145,7 +159,9 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "make",
+    "brew_latest": "4.4.1"
   },
   {
     "name": "git",
@@ -158,7 +174,9 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "git",
+    "brew_latest": "2.55.0"
   },
   {
     "name": "gh",
@@ -167,7 +185,9 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "gh",
+    "brew_latest": "2.101.0"
   },
   {
     "name": "jq",
@@ -176,21 +196,25 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "jq",
+    "brew_latest": "1.8.2"
   },
   {
     "name": "openssl",
     "category": "Security & Cryptography",
     "eol_slug": "openssl",
-    "lts": "3.5 / 3.0 LTS",
+    "lts": "3.5 LTS",
     "eol_below": [
       3,
-      0
+      4
     ],
     "flags": [
       "version",
       "--version"
-    ]
+    ],
+    "brew_formula": "openssl@3",
+    "brew_latest": "3.6.4"
   },
   {
     "name": "dpkg",
@@ -217,7 +241,9 @@
     "flags": [
       "-V",
       "--version"
-    ]
+    ],
+    "brew_formula": "openssh",
+    "brew_latest": "10.5p1"
   },
   {
     "name": "rsync",
@@ -226,16 +252,18 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "rsync",
+    "brew_latest": "3.5.0"
   },
   {
     "name": "gitlab-runner",
     "category": "CI/CD & Automation",
     "eol_slug": "gitlab-runner",
-    "lts": "19.2 / 19.1",
+    "lts": "19.4 / 19.3",
     "eol_below": [
       19,
-      0
+      2
     ],
     "flags": [
       "--version",
@@ -283,7 +311,9 @@
       "-v",
       "-V",
       "--version"
-    ]
+    ],
+    "brew_formula": "nginx",
+    "brew_latest": "1.31.6"
   },
   {
     "name": "mysql",
@@ -298,7 +328,9 @@
       8,
       4
     ],
-    "lts": "9.7 / 8.4 LTS"
+    "lts": "9.7 / 8.4 LTS",
+    "brew_formula": "mysql",
+    "brew_latest": "26.7.0"
   },
   {
     "name": "mariadb",
@@ -313,7 +345,9 @@
       10,
       11
     ],
-    "lts": "12.3 / 11.8 LTS"
+    "lts": "12.3 / 11.8 LTS",
+    "brew_formula": "mariadb",
+    "brew_latest": "13.0.2"
   },
   {
     "name": "mongod",
@@ -338,10 +372,12 @@
       "-v"
     ],
     "eol_below": [
-      7,
-      0
+      6,
+      2
     ],
-    "lts": "8.10 / 8.8"
+    "lts": "8.10 / 8.8",
+    "brew_formula": "redis",
+    "brew_latest": "8.10.2"
   },
   {
     "name": "psql",
@@ -353,10 +389,12 @@
       "-v"
     ],
     "eol_below": [
-      16,
+      14,
       0
     ],
-    "lts": "18 / 17"
+    "lts": "18 / 17",
+    "brew_formula": "postgresql@17",
+    "brew_latest": "17.11"
   },
   {
     "name": "pip3",
@@ -377,7 +415,9 @@
     "lts": "1.16.x+",
     "flags": [
       "--version"
-    ]
+    ],
+    "brew_formula": "pipx",
+    "brew_latest": "1.17.3"
   },
   {
     "name": "npm",
@@ -403,7 +443,9 @@
     "flags": [
       "--version",
       "-V"
-    ]
+    ],
+    "brew_formula": "curl",
+    "brew_latest": "8.22.0"
   },
   {
     "name": "docker",
@@ -412,6 +454,8 @@
     "flags": [
       "--version",
       "-v"
-    ]
+    ],
+    "brew_formula": "docker",
+    "brew_latest": "29.8.1"
   }
 ]

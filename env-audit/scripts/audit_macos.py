@@ -47,13 +47,10 @@ def get_tool_version(tool_item):
     eol_below = tool_item.get("eol_below")
     if eol_below and ver != "Installed":
         m = re.search(r"(\d+)\.(\d+)", ver)
-        if m:
-            try:
-                major, minor = int(m.group(1)), int(m.group(2))
-                if (major, minor) < tuple(eol_below):
-                    is_eol = True
-            except Exception:
-                pass
+        try:
+            is_eol = bool(m and (int(m.group(1)), int(m.group(2))) < tuple(eol_below))
+        except Exception:
+            pass
                 
     return {
         "path": path,
@@ -90,7 +87,7 @@ def main():
     os_name, kernel, family = get_os_info()
     targets = []
     if os.path.exists(TARGETS_FILE):
-        with open(TARGETS_FILE) as f:
+        with open(TARGETS_FILE, encoding="utf-8") as f:
             targets = json.load(f)
 
     results = {}
