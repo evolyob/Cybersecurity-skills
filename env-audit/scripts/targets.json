@@ -28,6 +28,9 @@
       "--version",
       "-v"
     ],
+    "aliases": [
+      "nodejs"
+    ],
     "brew_formula": "node",
     "brew_latest": "26.9.0"
   },
@@ -151,6 +154,21 @@
       "--version",
       "-v"
     ]
+  },
+  {
+    "name": "gcc",
+    "category": "Compilers & Toolchains",
+    "lts": "15.x / 13.x+",
+    "eol_below": [
+      11,
+      0
+    ],
+    "flags": [
+      "--version",
+      "-v"
+    ],
+    "brew_formula": "gcc",
+    "brew_latest": "16.2.0"
   },
   {
     "name": "make",

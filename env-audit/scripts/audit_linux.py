@@ -27,8 +27,8 @@ def get_os_info():
     return distro, f"Linux ({platform.machine()})", family
 
 def get_tool_version(tool_item):
-    name = tool_item["name"]
-    path = shutil.which(name)
+    names = [tool_item["name"]] + tool_item.get("aliases", [])
+    path = next((shutil.which(n) for n in names if shutil.which(n)), None)
     if not path or path.startswith("/mnt/"):
         return None
     
@@ -113,7 +113,7 @@ def main():
             results[item["name"]] = info
 
     outdated_pkgs = get_outdated_packages(family)
-    pkg_map = {"pip3": "python3-pip", "node": "nodejs"}
+    pkg_map = {"pip3": "python3-pip", "node": "nodejs", "ssh": "openssh-client", "psql": "postgresql-client"}
     
     for name, data in results.items():
         pkg_name = pkg_map.get(name, name)

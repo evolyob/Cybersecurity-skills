@@ -23,8 +23,8 @@ def get_os_info():
         return "macOS", f"Darwin ({arch})", "macos"
 
 def get_tool_version(tool_item):
-    name = tool_item["name"]
-    path = shutil.which(name)
+    names = [tool_item["name"]] + tool_item.get("aliases", [])
+    path = next((shutil.which(n) for n in names if shutil.which(n)), None)
     if not path or path.startswith("/Volumes/") or path.startswith("/mnt/"):
         return None
     
