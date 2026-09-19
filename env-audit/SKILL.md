@@ -1,6 +1,7 @@
 ---
 name: env-audit
 description: Audit OS binaries, CVEs, EOL risks, upstream versions, and generate upgrade commands.
+dependencies: []
 ---
 
 # Terminal Environment & Security Audit Skill (`env-audit`)
@@ -10,7 +11,7 @@ Act as a Senior System Security Auditor to inspect host OS binaries, audit insta
 
 Priority Rules: `Dynamic OS Routing > Package Manager Querying > Risk Filtering > Targeted Repair`
 
-## Execution Steps
+## Execution Workflow
 
 ### Step 1: Dynamic Environment Discovery & Target Inspection
 - Action: Execute the OS-dispatching audit router script to extract host details, functional installed binaries, and package manager candidates in JSON format:
