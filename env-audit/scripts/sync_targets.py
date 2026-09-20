@@ -41,7 +41,8 @@ def sync():
         return
 
     with open(TARGETS_FILE, "r", encoding="utf-8") as f:
-        targets = json.load(f)
+        raw = json.load(f)
+    targets = raw if isinstance(raw, list) else raw.get("binaries", [])
 
     unique_slugs = list({t["eol_slug"] for t in targets if "eol_slug" in t})
     unique_brews = list({t["brew_formula"] for t in targets if "brew_formula" in t})
@@ -96,7 +97,7 @@ def sync():
             print(f"  [UP-TO-DATE] {item['name']} -> {status_str}")
 
     with open(TARGETS_FILE, "w", encoding="utf-8") as f:
-        json.dump(targets, f, ensure_ascii=False, indent=2)
+        json.dump(raw, f, ensure_ascii=False, indent=2)
     print(f"\nSuccessfully synchronized! ({updated_count} targets updated, saved to targets.json)")
 
 if __name__ == "__main__":

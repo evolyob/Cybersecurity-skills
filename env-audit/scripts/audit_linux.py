@@ -57,13 +57,18 @@ def get_tool_version(tool_item):
         except Exception:
             pass
                 
-    return {
+    res = {
         "path": path,
         "version": ver,
         "category": tool_item.get("category", "General"),
         "recommended_lts": lts,
         "is_eol": is_eol
     }
+    if tool_item["name"] == "ssh":
+        out = subprocess.run([path, "-G", "localhost"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True).stdout
+        if out:
+            res["cipher_suite"] = dict(re.findall(r"^(ciphers|macs)\s+(.*)", out, re.M))
+    return res
 
 def get_outdated_packages(family):
     outdated = {}
@@ -99,12 +104,27 @@ def get_outdated_packages(family):
             pass
     return outdated
 
+def audit_guards(guards, family):
+    results = {}
+    for g in guards:
+        if family not in g.get("platform", [family]):
+            continue
+        try:
+            out = subprocess.run(g["cmd"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, timeout=1).stdout.strip()
+            passed = bool(re.search(g["expect"], out, re.I)) if out else (g.get("expect") == "0")
+        except Exception as e:
+            out, passed = str(e), False
+        results[g["id"]] = {"name": g["name"], "category": g["category"], "status": "PASS" if passed else "FAIL", "evidence": out}
+    return results
+
 def main():
     os_name, kernel, family = get_os_info()
-    targets = []
+    targets, guards = [], []
     if os.path.exists(TARGETS_FILE):
         with open(TARGETS_FILE, encoding="utf-8") as f:
-            targets = json.load(f)
+            raw = json.load(f)
+            targets = raw if isinstance(raw, list) else raw.get("binaries", [])
+            guards = raw.get("system_guards", []) if isinstance(raw, dict) else []
 
     results = {}
     for item in targets:
@@ -129,6 +149,8 @@ def main():
             "candidate": candidate
         }
 
+    guard_results = audit_guards(guards, family)
+
     report = {
         "os_name": os_name,
         "kernel": kernel,
@@ -136,6 +158,7 @@ def main():
         "shell": os.environ.get("SHELL", "/bin/bash"),
         "detected_count": len(results),
         "installed_binaries": results,
+        "system_guards": guard_results,
         "outdated_system_packages": outdated_pkgs,
         "cve_vulnerabilities": []
     }

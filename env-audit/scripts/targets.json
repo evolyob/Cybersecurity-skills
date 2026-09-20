@@ -1,479 +1,551 @@
-[
-  {
-    "name": "python3",
-    "category": "Languages & Runtimes",
-    "eol_slug": "python",
-    "lts": "3.14 / 3.13",
-    "eol_below": [
-      3,
-      10
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "python@3.13",
-    "brew_latest": "3.13.15"
-  },
-  {
-    "name": "node",
-    "category": "Languages & Runtimes",
-    "eol_slug": "nodejs",
-    "lts": "26 / 24 LTS",
-    "eol_below": [
-      22,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "aliases": [
-      "nodejs"
-    ],
-    "brew_formula": "node",
-    "brew_latest": "26.9.0"
-  },
-  {
-    "name": "go",
-    "category": "Languages & Runtimes",
-    "eol_slug": "go",
-    "lts": "1.27 / 1.26",
-    "eol_below": [
-      1,
-      26
-    ],
-    "flags": [
-      "version",
-      "--version"
-    ],
-    "brew_formula": "go",
-    "brew_latest": "1.27.1"
-  },
-  {
-    "name": "rustc",
-    "category": "Languages & Runtimes",
-    "eol_slug": "rust",
-    "lts": "1.98",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "eol_below": [
-      1,
-      98
-    ],
-    "brew_formula": "rust",
-    "brew_latest": "1.98.1"
-  },
-  {
-    "name": "java",
-    "category": "Languages & Runtimes",
-    "eol_slug": "oracle-jdk",
-    "lts": "25 / 21 LTS",
-    "eol_below": [
-      17,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-version"
-    ]
-  },
-  {
-    "name": "ruby",
-    "category": "Languages & Runtimes",
-    "eol_slug": "ruby",
-    "lts": "4.0 / 3.4",
-    "eol_below": [
-      3,
-      3
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "ruby",
-    "brew_latest": "4.0.7"
-  },
-  {
-    "name": "perl",
-    "category": "Languages & Runtimes",
-    "eol_slug": "perl",
-    "lts": "5.44 / 5.42",
-    "eol_below": [
-      5,
-      40
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "perl",
-    "brew_latest": "5.44.0"
-  },
-  {
-    "name": "php",
-    "category": "Languages & Runtimes",
-    "eol_slug": "php",
-    "lts": "8.5 / 8.4",
-    "eol_below": [
-      8,
-      2
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "php",
-    "brew_latest": "8.5.10"
-  },
-  {
-    "name": "dotnet",
-    "category": "Languages & Runtimes",
-    "eol_slug": "dotnet",
-    "lts": "10 / 8 LTS",
-    "eol_below": [
-      8,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "clang",
-    "category": "Compilers & Toolchains",
-    "lts": "17.x / 16.x+",
-    "eol_below": [
-      15,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "gcc",
-    "category": "Compilers & Toolchains",
-    "lts": "15.x / 13.x+",
-    "eol_below": [
-      11,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "gcc",
-    "brew_latest": "16.2.0"
-  },
-  {
-    "name": "make",
-    "category": "Compilers & Toolchains",
-    "lts": "4.4.x / 3.81+",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "make",
-    "brew_latest": "4.4.1"
-  },
-  {
-    "name": "git",
-    "category": "VCS & Code Quality",
-    "lts": "2.55.x / 2.45+",
-    "eol_below": [
-      2,
-      39
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "git",
-    "brew_latest": "2.55.0"
-  },
-  {
-    "name": "gh",
-    "category": "VCS & Code Quality",
-    "lts": "2.97.x",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "gh",
-    "brew_latest": "2.101.0"
-  },
-  {
-    "name": "jq",
-    "category": "VCS & Code Quality",
-    "lts": "1.8.x / 1.7.x",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "jq",
-    "brew_latest": "1.8.2"
-  },
-  {
-    "name": "openssl",
-    "category": "Security & Cryptography",
-    "eol_slug": "openssl",
-    "lts": "3.5 LTS",
-    "eol_below": [
-      3,
-      4
-    ],
-    "flags": [
-      "version",
-      "--version"
-    ],
-    "brew_formula": "openssl@3",
-    "brew_latest": "3.6.4"
-  },
-  {
-    "name": "dpkg",
-    "category": "System & Package Managers",
-    "lts": "1.22.x",
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "brew",
-    "category": "System & Package Managers",
-    "lts": "6.0.x / Latest",
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "ssh",
-    "category": "System & Security",
-    "lts": "10.x / 9.9p+",
-    "flags": [
-      "-V",
-      "--version"
-    ],
-    "brew_formula": "openssh",
-    "brew_latest": "10.5p1"
-  },
-  {
-    "name": "rsync",
-    "category": "System & File Utils",
-    "lts": "3.5.x / 3.2+",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "rsync",
-    "brew_latest": "3.5.0"
-  },
-  {
-    "name": "gitlab-runner",
-    "category": "CI/CD & Automation",
-    "eol_slug": "gitlab-runner",
-    "lts": "19.4 / 19.3",
-    "eol_below": [
-      19,
-      2
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "jenkins",
-    "category": "CI/CD & Automation",
-    "eol_slug": "jenkins",
-    "lts": "2.568 LTS",
-    "eol_below": [
-      2,
-      568
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "kong",
-    "category": "Web & API Gateways",
-    "eol_slug": "kong-gateway",
-    "lts": "3.4 LTS",
-    "eol_below": [
-      3,
-      4
-    ],
-    "flags": [
-      "version",
-      "--version"
-    ]
-  },
-  {
-    "name": "nginx",
-    "category": "Web & API Gateways",
-    "eol_slug": "nginx",
-    "lts": "1.31 / 1.30",
-    "eol_below": [
-      1,
-      30
-    ],
-    "flags": [
-      "-v",
-      "-V",
-      "--version"
-    ],
-    "brew_formula": "nginx",
-    "brew_latest": "1.31.6"
-  },
-  {
-    "name": "mysql",
-    "category": "Databases & Storage",
-    "eol_slug": "mysql",
-    "flags": [
-      "--version",
-      "-V",
-      "-v"
-    ],
-    "eol_below": [
-      8,
-      4
-    ],
-    "lts": "9.7 / 8.4 LTS",
-    "brew_formula": "mysql",
-    "brew_latest": "26.7.0"
-  },
-  {
-    "name": "mariadb",
-    "category": "Databases & Storage",
-    "eol_slug": "mariadb",
-    "flags": [
-      "--version",
-      "-V",
-      "-v"
-    ],
-    "eol_below": [
-      10,
-      11
-    ],
-    "lts": "12.3 / 11.8 LTS",
-    "brew_formula": "mariadb",
-    "brew_latest": "13.0.2"
-  },
-  {
-    "name": "mongod",
-    "category": "Databases & Storage",
-    "eol_slug": "mongodb",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "eol_below": [
-      7,
-      0
-    ],
-    "lts": "8.3 / 8.0"
-  },
-  {
-    "name": "redis-server",
-    "category": "Databases & Storage",
-    "eol_slug": "redis",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "eol_below": [
-      6,
-      2
-    ],
-    "lts": "8.10 / 8.8",
-    "brew_formula": "redis",
-    "brew_latest": "8.10.2"
-  },
-  {
-    "name": "psql",
-    "category": "Databases & Storage",
-    "eol_slug": "postgresql",
-    "flags": [
-      "--version",
-      "-V",
-      "-v"
-    ],
-    "eol_below": [
-      14,
-      0
-    ],
-    "lts": "18 / 17",
-    "brew_formula": "postgresql@17",
-    "brew_latest": "17.11"
-  },
-  {
-    "name": "pip3",
-    "category": "Package Managers & Tools",
-    "lts": "26.x / 25.x+",
-    "eol_below": [
-      23,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-V"
-    ]
-  },
-  {
-    "name": "pipx",
-    "category": "Package Managers & Tools",
-    "lts": "1.16.x+",
-    "flags": [
-      "--version"
-    ],
-    "brew_formula": "pipx",
-    "brew_latest": "1.17.3"
-  },
-  {
-    "name": "npm",
-    "category": "Package Managers & Tools",
-    "lts": "11.x / 10.x+",
-    "eol_below": [
-      9,
-      0
-    ],
-    "flags": [
-      "--version",
-      "-v"
-    ]
-  },
-  {
-    "name": "curl",
-    "category": "Network & System Utils",
-    "lts": "8.12.x / 8.7+",
-    "eol_below": [
-      7,
-      80
-    ],
-    "flags": [
-      "--version",
-      "-V"
-    ],
-    "brew_formula": "curl",
-    "brew_latest": "8.22.0"
-  },
-  {
-    "name": "docker",
-    "category": "Containers & Cloud Native",
-    "lts": "28.x / 27.x+",
-    "flags": [
-      "--version",
-      "-v"
-    ],
-    "brew_formula": "docker",
-    "brew_latest": "29.8.1"
-  }
-]
+{
+  "binaries": [
+    {
+      "name": "python3",
+      "category": "Languages & Runtimes",
+      "eol_slug": "python",
+      "lts": "3.14 / 3.13",
+      "eol_below": [
+        3,
+        10
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "python@3.13",
+      "brew_latest": "3.13.15"
+    },
+    {
+      "name": "node",
+      "category": "Languages & Runtimes",
+      "eol_slug": "nodejs",
+      "lts": "26 / 24 LTS",
+      "eol_below": [
+        22,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "aliases": [
+        "nodejs"
+      ],
+      "brew_formula": "node",
+      "brew_latest": "26.9.0"
+    },
+    {
+      "name": "go",
+      "category": "Languages & Runtimes",
+      "eol_slug": "go",
+      "lts": "1.27 / 1.26",
+      "eol_below": [
+        1,
+        26
+      ],
+      "flags": [
+        "version",
+        "--version"
+      ],
+      "brew_formula": "go",
+      "brew_latest": "1.27.1"
+    },
+    {
+      "name": "rustc",
+      "category": "Languages & Runtimes",
+      "eol_slug": "rust",
+      "lts": "1.98",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "eol_below": [
+        1,
+        98
+      ],
+      "brew_formula": "rust",
+      "brew_latest": "1.98.1"
+    },
+    {
+      "name": "java",
+      "category": "Languages & Runtimes",
+      "eol_slug": "oracle-jdk",
+      "lts": "25 / 21 LTS",
+      "eol_below": [
+        17,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-version"
+      ]
+    },
+    {
+      "name": "ruby",
+      "category": "Languages & Runtimes",
+      "eol_slug": "ruby",
+      "lts": "4.0 / 3.4",
+      "eol_below": [
+        3,
+        3
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "ruby",
+      "brew_latest": "4.0.7"
+    },
+    {
+      "name": "perl",
+      "category": "Languages & Runtimes",
+      "eol_slug": "perl",
+      "lts": "5.44 / 5.42",
+      "eol_below": [
+        5,
+        40
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "perl",
+      "brew_latest": "5.44.0"
+    },
+    {
+      "name": "php",
+      "category": "Languages & Runtimes",
+      "eol_slug": "php",
+      "lts": "8.5 / 8.4",
+      "eol_below": [
+        8,
+        2
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "php",
+      "brew_latest": "8.5.10"
+    },
+    {
+      "name": "dotnet",
+      "category": "Languages & Runtimes",
+      "eol_slug": "dotnet",
+      "lts": "10 / 8 LTS",
+      "eol_below": [
+        8,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "clang",
+      "category": "Compilers & Toolchains",
+      "lts": "17.x / 16.x+",
+      "eol_below": [
+        15,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "gcc",
+      "category": "Compilers & Toolchains",
+      "lts": "15.x / 13.x+",
+      "eol_below": [
+        11,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "gcc",
+      "brew_latest": "16.2.0"
+    },
+    {
+      "name": "make",
+      "category": "Compilers & Toolchains",
+      "lts": "4.4.x / 3.81+",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "make",
+      "brew_latest": "4.4.1"
+    },
+    {
+      "name": "git",
+      "category": "VCS & Code Quality",
+      "lts": "2.55.x / 2.45+",
+      "eol_below": [
+        2,
+        39
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "git",
+      "brew_latest": "2.55.0"
+    },
+    {
+      "name": "gh",
+      "category": "VCS & Code Quality",
+      "lts": "2.97.x",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "gh",
+      "brew_latest": "2.101.0"
+    },
+    {
+      "name": "jq",
+      "category": "VCS & Code Quality",
+      "lts": "1.8.x / 1.7.x",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "jq",
+      "brew_latest": "1.8.2"
+    },
+    {
+      "name": "openssl",
+      "category": "Security & Cryptography",
+      "eol_slug": "openssl",
+      "lts": "3.5 LTS",
+      "eol_below": [
+        3,
+        4
+      ],
+      "flags": [
+        "version",
+        "--version"
+      ],
+      "brew_formula": "openssl@3",
+      "brew_latest": "3.6.4"
+    },
+    {
+      "name": "dpkg",
+      "category": "System & Package Managers",
+      "lts": "1.22.x",
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "brew",
+      "category": "System & Package Managers",
+      "lts": "6.0.x / Latest",
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "ssh",
+      "category": "System & Security",
+      "lts": "10.x / 9.9p+",
+      "flags": [
+        "-V",
+        "--version"
+      ],
+      "brew_formula": "openssh",
+      "brew_latest": "10.5p1",
+      "cipher_policy": {
+        "warn_kex": [
+          "diffie-hellman"
+        ],
+        "warn_macs": [
+          "sha1"
+        ],
+        "fail_ciphers": [
+          "-cbc",
+          "3des",
+          "arcfour"
+        ]
+      }
+    },
+    {
+      "name": "rsync",
+      "category": "System & File Utils",
+      "lts": "3.5.x / 3.2+",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "rsync",
+      "brew_latest": "3.5.0"
+    },
+    {
+      "name": "gitlab-runner",
+      "category": "CI/CD & Automation",
+      "eol_slug": "gitlab-runner",
+      "lts": "19.4 / 19.3",
+      "eol_below": [
+        19,
+        2
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "jenkins",
+      "category": "CI/CD & Automation",
+      "eol_slug": "jenkins",
+      "lts": "2.568 LTS",
+      "eol_below": [
+        2,
+        568
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "kong",
+      "category": "Web & API Gateways",
+      "eol_slug": "kong-gateway",
+      "lts": "3.4 LTS",
+      "eol_below": [
+        3,
+        4
+      ],
+      "flags": [
+        "version",
+        "--version"
+      ]
+    },
+    {
+      "name": "nginx",
+      "category": "Web & API Gateways",
+      "eol_slug": "nginx",
+      "lts": "1.31 / 1.30",
+      "eol_below": [
+        1,
+        30
+      ],
+      "flags": [
+        "-v",
+        "-V",
+        "--version"
+      ],
+      "brew_formula": "nginx",
+      "brew_latest": "1.31.6"
+    },
+    {
+      "name": "mysql",
+      "category": "Databases & Storage",
+      "eol_slug": "mysql",
+      "flags": [
+        "--version",
+        "-V",
+        "-v"
+      ],
+      "eol_below": [
+        8,
+        4
+      ],
+      "lts": "9.7 / 8.4 LTS",
+      "brew_formula": "mysql",
+      "brew_latest": "26.7.0"
+    },
+    {
+      "name": "mariadb",
+      "category": "Databases & Storage",
+      "eol_slug": "mariadb",
+      "flags": [
+        "--version",
+        "-V",
+        "-v"
+      ],
+      "eol_below": [
+        10,
+        11
+      ],
+      "lts": "12.3 / 11.8 LTS",
+      "brew_formula": "mariadb",
+      "brew_latest": "13.0.2"
+    },
+    {
+      "name": "mongod",
+      "category": "Databases & Storage",
+      "eol_slug": "mongodb",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "eol_below": [
+        7,
+        0
+      ],
+      "lts": "8.3 / 8.0"
+    },
+    {
+      "name": "redis-server",
+      "category": "Databases & Storage",
+      "eol_slug": "redis",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "eol_below": [
+        6,
+        2
+      ],
+      "lts": "8.10 / 8.8",
+      "brew_formula": "redis",
+      "brew_latest": "8.10.2"
+    },
+    {
+      "name": "psql",
+      "category": "Databases & Storage",
+      "eol_slug": "postgresql",
+      "flags": [
+        "--version",
+        "-V",
+        "-v"
+      ],
+      "eol_below": [
+        14,
+        0
+      ],
+      "lts": "18 / 17",
+      "brew_formula": "postgresql@17",
+      "brew_latest": "17.11"
+    },
+    {
+      "name": "pip3",
+      "category": "Package Managers & Tools",
+      "lts": "26.x / 25.x+",
+      "eol_below": [
+        23,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-V"
+      ]
+    },
+    {
+      "name": "pipx",
+      "category": "Package Managers & Tools",
+      "lts": "1.16.x+",
+      "flags": [
+        "--version"
+      ],
+      "brew_formula": "pipx",
+      "brew_latest": "1.17.3"
+    },
+    {
+      "name": "npm",
+      "category": "Package Managers & Tools",
+      "lts": "11.x / 10.x+",
+      "eol_below": [
+        9,
+        0
+      ],
+      "flags": [
+        "--version",
+        "-v"
+      ]
+    },
+    {
+      "name": "curl",
+      "category": "Network & System Utils",
+      "lts": "8.12.x / 8.7+",
+      "eol_below": [
+        7,
+        80
+      ],
+      "flags": [
+        "--version",
+        "-V"
+      ],
+      "brew_formula": "curl",
+      "brew_latest": "8.22.0"
+    },
+    {
+      "name": "docker",
+      "category": "Containers & Cloud Native",
+      "lts": "28.x / 27.x+",
+      "flags": [
+        "--version",
+        "-v"
+      ],
+      "brew_formula": "docker",
+      "brew_latest": "29.8.1"
+    }
+  ],
+  "system_guards": [
+    {
+      "id": "sip",
+      "name": "System Integrity Protection (SIP)",
+      "category": "Core Defense",
+      "cmd": [
+        "csrutil",
+        "status"
+      ],
+      "expect": "enabled",
+      "platform": [
+        "macos"
+      ]
+    },
+    {
+      "id": "gatekeeper",
+      "name": "Gatekeeper Assessment",
+      "category": "Core Defense",
+      "cmd": [
+        "spctl",
+        "--status"
+      ],
+      "expect": "assessments enabled",
+      "platform": [
+        "macos"
+      ]
+    },
+    {
+      "id": "alf",
+      "name": "Application Layer Firewall (ALF)",
+      "category": "Core Defense",
+      "cmd": [
+        "/usr/libexec/ApplicationFirewall/socketfilterfw",
+        "--getglobalstate"
+      ],
+      "expect": "State = 1",
+      "platform": [
+        "macos"
+      ]
+    },
+    {
+      "id": "airplay",
+      "name": "AirPlay Receiver Broadcast",
+      "category": "Attack Surface",
+      "cmd": [
+        "defaults",
+        "-currentHost",
+        "read",
+        "com.apple.controlcenter",
+        "AirplayRecieverEnabled"
+      ],
+      "expect": "0",
+      "platform": [
+        "macos"
+      ]
+    }
+  ]
+}
