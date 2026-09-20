@@ -25,8 +25,9 @@ Priority Rules: `Dynamic OS Routing > Package Manager Querying > Risk Filtering 
 - Completion Criterion: Package manager versions and EOL statuses are fully evaluated.
 
 ### Step 3: Render Structured Audit Report
-- Action: Output a 3-part structured audit report:
-  1. **System & Binary Inventory**: Render a SINGLE consolidated table for all discovered binaries (`Category`, `Component`, `Installed Version`, `Recommended LTS Version`, `Status` as `PASS`/`FAIL`).
-  2. **CVE & Risk Summary**: Audit all components from Part 1. **ONLY display items marked as FAIL**.
-  3. **Targeted Maintenance & Upgrade Commands**: Provide exact commands **ONLY for FAIL items in Part 2**, structured by (1) official package repository setup, (2) native package manager upgrade, and (3) verification.
-- Completion Criterion: 3-part report rendered cleanly without redundant clean-item noise.
+- Action: Output a structured audit report:
+  1. **Host Header**: Render `主機規格：<OS> (<arch>) | 核心：<Kernel> | Core Defense : <SIP / Gatekeeper / ALF Actual Status>`.
+  2. **System & Binary Inventory**: Render a SINGLE consolidated table (`Category`, `Component`, `Installed Version`, `Recommended LTS Version`, `Status`). Under `ssh`, append `↳ SSH Cipher Suite` (`AES-GCM / ChaCha20` | `MAC 含 SHA-1 / CBC` | `WARN`/`PASS`).
+  3. **CVE & Risk Summary**: Audit all components. **ONLY display items marked as FAIL or WARN**.
+  4. **Targeted Maintenance & Upgrade Commands**: Provide exact commands **ONLY for FAIL/WARN items**, structured by (1) repo setup, (2) native package manager upgrade, and (3) verification.
+- Completion Criterion: Structured report rendered cleanly without redundant clean-item noise.
