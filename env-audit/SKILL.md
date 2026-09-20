@@ -25,9 +25,14 @@ Priority Rules: `Dynamic OS Routing > Package Manager Querying > Risk Filtering 
 - Completion Criterion: Package manager versions and EOL statuses are fully evaluated.
 
 ### Step 3: Render Structured Audit Report
-- Action: Output a structured audit report:
-  1. **Host Header**: Render `主機規格：<OS> (<arch>) | 核心：<Kernel> | Core Defense : <SIP / Gatekeeper / ALF Actual Status>`.
-  2. **System & Binary Inventory**: Render a SINGLE consolidated table (`Category`, `Component`, `Installed Version`, `Recommended LTS Version`, `Status`). Under `ssh`, append `↳ SSH Cipher Suite` (`AES-GCM / ChaCha20` | `MAC 含 SHA-1 / CBC` | `WARN`/`PASS`).
-  3. **CVE & Risk Summary**: Audit all components. **ONLY display items marked as FAIL or WARN**.
-  4. **Targeted Maintenance & Upgrade Commands**: Provide exact commands **ONLY for FAIL/WARN items**, structured by (1) repo setup, (2) native package manager upgrade, and (3) verification.
+- Action: Synthesize inspection JSON into a 3-part structured audit report (render display labels in user's conversation language):
+  1. **Host Header**: Render host metadata and evaluated OS defenses on a single line:
+     - Format: `<Host Specs>: <os_name> (<arch>) | <Kernel>: <kernel> | Core Defense: <evaluated_guards_status>`.
+     - Dynamic guard evaluation: display `SIP / Gatekeeper / ALF Enabled` if all pass; explicitly flag any disabled component (e.g., `⚠️ ALF Disabled`).
+  2. **System & Binary Inventory**: Single consolidated markdown table (`Category`, `Component`, `Installed Version`, `Recommended LTS Version`, `Status`):
+     - Enumerate all functional binaries. Set status to `PASS` or `FAIL` based on lifecycle standard.
+     - Beneath `ssh`, insert sub-row `↳ SSH Cipher Suite`: display active symmetric ciphers in installed column (e.g., `AES-GCM / ChaCha20`), risk audit criteria in LTS column (e.g., `MAC 含 SHA-1 / CBC`), and status as `WARN` (if legacy MAC/cipher present) or `PASS`.
+  3. **Risk Summary & Targeted Remediation**:
+     - Detail ONLY components marked as `FAIL` or `WARN` with EOL thresholds and CVE/cryptographic risks.
+     - Provide copy-paste remediation commands structured by: (1) repo index update, (2) package manager upgrade, (3) post-install verification.
 - Completion Criterion: Structured report rendered cleanly without redundant clean-item noise.
