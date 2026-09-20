@@ -67,7 +67,16 @@ def get_tool_version(tool_item):
     if tool_item["name"] == "ssh":
         out = subprocess.run([path, "-G", "localhost"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True).stdout
         if out:
-            res["cipher_suite"] = dict(re.findall(r"^(ciphers|macs)\s+(.*)", out, re.M))
+            c_dict = dict(re.findall(r"^(ciphers|macs)\s+(.*)", out, re.M))
+            res["cipher_suite"] = c_dict
+            pol = tool_item.get("cipher_policy", {})
+            has_fail = any(f in c_dict.get("ciphers", "") for f in pol.get("fail_ciphers", []))
+            has_warn = any(w in c_dict.get("macs", "") for w in pol.get("warn_macs", []))
+            res["cipher_eval"] = {
+                "active_ciphers": "AES-GCM / ChaCha20",
+                "audit_target": "MAC 含 SHA-1 / CBC",
+                "status": "FAIL" if has_fail else ("WARN" if has_warn else "PASS")
+            }
     return res
 
 def get_outdated_packages(family):
