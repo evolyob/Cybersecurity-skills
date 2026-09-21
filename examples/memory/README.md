@@ -8,30 +8,26 @@ This directory provides production-grade templates, governance scaffolds, and ar
 
 The memory system decouples lean index routing from deep governance and concrete execution contracts:
 
-```mermaid
-flowchart LR
-    classDef l1 fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#fff;
-    classDef l2 fill:#0f172a,stroke:#a78bfa,stroke-width:1.5px,color:#fff;
-    classDef l3 fill:#0f172a,stroke:#34d399,stroke-width:1.5px,color:#fff;
-
-    L1["<b>Level 1: Master Index</b><br/><code>core.md</code> (&lt; 35 lines)"]:::l1
-
-    subgraph L2 ["Level 2: Governance &amp; Task Architecture (topics/)"]
-        direction TB
-        t1["<code>system_governance.md</code><br/>Security Baselines &amp; Guardrails"]:::l2
-        t2["<code>user_preferences.md</code><br/>Compute/Cognition &amp; Formatting"]:::l2
-    end
-
-    subgraph L3 ["Level 3: Implementation Scaffolds (templates/)"]
-        direction TB
-        m1["<code>spec_template.md</code> (Specification Contract)"]:::l3
-        m2["<code>senior_coding_laws.md</code> (Clean Code Radar)"]:::l3
-        m3["<code>SKILL_DATA_SPEC.md</code> (Flat Index &amp; Schema)"]:::l3
-        m4["<code>vibe_skill_lifecycle.md</code> (Lifecycle &amp; Traps)"]:::l3
-    end
-
-    L1 ==>|Security / Prefs| L2
-    L1 ==>|Task Execution| L3
+```text
+┌────────────────────────────────────────────────────────┐
+│  Tier 0: Rule & Constitution (Highest Authority)       │
+│  • System Prompt / user_global (Security & Style)      │
+└──────────────────────────┬─────────────────────────────┘
+                           │ Constrains
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│  Tier 1: Global Master Index (Lean & Resident)         │
+│  • ~/.gemini/memory/core.md (< 35 lines routing index) │
+└──────────────┬──────────────────────────┬──────────────┘
+               │ On-demand loading        │ Task-specific contracts
+               ▼                          ▼
+┌──────────────────────────────┐ ┌───────────────────────────────┐
+│ Tier 2: Governance & Topics  │ │ Tier 3: Templates & Workspace │
+│ • topics/system_governance.md│ │ • templates/spec_template.md  │
+│ • topics/user_preferences.md │ │ • templates/vibe_lifecycle.md │
+│                              │ │ • <workspace>/.memory/        │
+│                              │ │   └── project.md              │
+└──────────────────────────────┘ └───────────────────────────────┘
 ```
 
 ---
