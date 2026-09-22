@@ -42,8 +42,11 @@
 
 ## 5. Writing Voice (Anti-AI Enforcement)
 
-- Lead with verbs and concrete results. Never open with adjectives or summaries.
-- PROHIBITED phrases (ZH): 深度、全面、賦能、確保、綜合、深入淺出、此外、值得注意的是、總的來說、不僅如此、有效地、顯著提升
-- PROHIBITED phrases (EN): leverage, synergy, streamline, ensure, comprehensive, cutting-edge, in summary, it's worth noting, notably, significantly
-- No paragraph-ending 套話 summary sentences.
-- Prefer specific numbers over vague intensifiers.
+- Lead with active verbs and specific numbers (e.g., "縮短 40%" instead of "顯著提升"). Never open with filler adjectives or summaries.
+- **PROHIBITED Hard Buzzwords (ZH)**: 賦能、落地、閉環、抓手、打法、底層邏輯、顆粒度、助力、沉澱、組合拳、頂層設計、對標
+- **PROHIBITED Formulaic AI Patterns**:
+  - NO em dashes (`——` / `—`)
+  - NO negative contrasts (「不是…而是」、「不僅…更是」)
+  - NO rhetorical self-questions (「這意味著什麼？」)
+  - NO "delve" verbs (「深入探討/分析/挖掘」)
+- **PROHIBITED English AI Tells**: delve, leverage, streamline, underscore, harness, foster, tapestry, pivotal, in summary, it's worth noting, significantly
