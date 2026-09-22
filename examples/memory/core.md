@@ -1,20 +1,15 @@
 # Core Memory & Template Index
 
-> **Directive**: Keep core memory under 35 lines. Load governance topic and templates on-demand. Never dump unprompted.
+> **Primary Directive**: Read `core.md` at conversation start. Load topic files and templates on-demand. Never dump unprompted.
 
 ---
 
-## 1. System Governance Topics (`topics/` - Security & Architecture Baselines)
+## 1. System Governance Topic (`topics/` - Execution Verification)
 
-### 1. Engineering & System Governance
-- **Domain**: Cryptography Baselines (AES-GCM/Ed25519/TLS 1.3), OWASP/CIS, Zero-EOL (Python/Node/Go), Credential Guard, 0-Retry Auth, 7-Step Pause, Pre-Delivery Verification
+### 1. Pre-Delivery Machine Verification
+- **Domain**: Automated compilation & linting, Zero-Leakage regex scanning, 100% test pass enforcement
 - **Path**: `topics/system_governance.md`
-- **Keywords / Triggers**: OWASP, CIS, Cryptography, AES-GCM, TLS 1.3, Zero-EOL, Credential Guard, Anti-Drift, Zero-Leakage, Pre-Delivery Verification
-
-### 2. User Preferences & Task Architecture
-- **Domain**: Knowledge Purity, Compute vs Cognitive Division of Labor, Compact Formatting (Surgical Diffs, ASCII Trees)
-- **Path**: `topics/user_preferences.md`
-- **Keywords / Triggers**: Preferences, Division of Labor, Non-Abstract, Formatting, Diff, ASCII Tree
+- **Keywords / Triggers**: py_compile, tsc, go vet, Zero-Leakage, Pre-Delivery Verification, Unit Test Run
 
 ---
 
@@ -32,13 +27,11 @@
 - **Path**: `templates/SKILL_DATA_SPEC.md`
 - **Role**: Pattern A flat catalog default vs Pattern B grouped exception, in-memory inverted index mandate (N > 20, O(1) lookup), zero envelope tax.
 
-### 4. Vibe Skill Lifecycle & Evolution Guide
-- **Path**: `templates/vibe_skill_lifecycle.md`
-- **Role**: Standard 4-step build flow, 5 evolution traps rejection, and 8-point pre-delivery cheatsheet.
-
 ---
 
-## 3. Minimal User Preference Boilerplate (Example)
-- **Export Path**: `~/Downloads` for all deliverables (.docx, .xlsx, .pptx, .pdf).
-- **Encoding**: `utf-8-sig` (UTF-8 with BOM) for cross-platform compatibility.
-- **Guardrail**: Write to persistent memory only upon explicit user command.
+## 3. Active Domain Topics (`topics/`)
+
+### 1. Agent Architecture & Skill Lifecycle Guide
+- **Domain**: Python vs LLM Division of Labor, Skill Build Flow, Evolution Traps, Pre-Delivery Checklist
+- **Topic Path**: `topics/agent_skill_architecture.md`
+- **Keywords / Triggers**: Skill Build, Division of Labor, Python Compute, LLM Format, Ghost Tools, Cognitive Dump, Pre-Delivery, Vibe Skill

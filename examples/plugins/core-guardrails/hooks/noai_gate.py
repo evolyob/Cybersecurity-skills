@@ -15,8 +15,8 @@ TARGET_EXTS = (".md", ".typ", ".tex", ".txt")
 
 def deny(fname: str, line_num: int, word: str, snippet: str) -> None:
     reason = (
-        f"[Anti-AI Gate Denied] File {Path(fname).name} line {line_num} contains forbidden AI buzzword or tell '{word}': '{snippet[:60]}'.\n"
-        "[DIRECTIVE] Rewrite the entire paragraph using active verbs and direct tone; never perform word-for-word substitution."
+        f"【Anti-AI 門禁阻斷】文件 {Path(fname).name} 第 {line_num} 行包含套話「{word}」: 『{snippet[:60]}』。\n"
+        "[DIRECTIVE] 請以主動動詞與晨會口吻整段重寫，切勿逐字替換單詞。"
     )
     print(json.dumps({"decision": "deny", "reason": reason}, ensure_ascii=False))
     sys.exit(0)

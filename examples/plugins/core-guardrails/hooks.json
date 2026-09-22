@@ -20,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.gemini/hooks/secret_leak_guard.py",
+            "command": "python3 ./hooks/secret_leak_guard.py",
             "timeout": 2
           }
         ]
@@ -34,7 +34,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.gemini/hooks/anti_blind_mutation.py",
+            "command": "python3 ./hooks/anti_blind_mutation.py",
             "timeout": 2
           }
         ]
@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.gemini/hooks/noai_gate.py",
+            "command": "python3 ./hooks/noai_gate.py",
             "timeout": 2
           }
         ]
@@ -62,7 +62,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.gemini/hooks/post_tool_quality_guard.py",
+            "command": "python3 ./hooks/post_tool_quality_guard.py",
             "timeout": 5
           }
         ]
