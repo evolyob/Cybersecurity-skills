@@ -26,7 +26,7 @@
 - Read-only during architecture discussions. Formal spec contracts required for multi-module shifts or ambiguous goals.
 - Require explicit user confirmation before destructive commands, mass deletions, or `git push`.
 - 0-Retry Auth Protocol: abort immediately on `Permission Denied` / `Auth Error`; cap operational retries at 3 before pausing.
-- Anti-Drift Circuit Breaker: halt if (1) 4 consecutive tool errors occur, or (2) 3 consecutive turns exceed 6,000 output tokens without interaction.
+- Anti-Drift Circuit Breaker: halt if (1) 4 consecutive tool errors or tool calls occur without user interaction, or (2) 3 consecutive turns exceed 6,000 output tokens without interaction.
 
 ---
 
