@@ -20,7 +20,6 @@
 - 0-Retry Auth Protocol: abort immediately on `Permission Denied` / `Auth Error`; cap operational retries at 3 before pausing.
 - Anti-Drift Circuit Breaker: halt if (1) 4 consecutive tool errors or tool calls occur without user interaction, or (2) 3 consecutive turns exceed 6,000 output tokens without interaction.
 - Clarification Circuit Breaker: whenever feedback signals regression, dissatisfaction, or ambiguous scope, pause mutations immediately to clarify root causes.
-- Strict Git Routing: `~/skills` -> ONLY `github.com/evolyob/AGY_SkillBook` (`agy skill book` subdirectory); all other content -> ONLY `github.com/evolyob/epymntNote` (`jenny4do` branch).
 - Task State Handoff: read `~/.gemini/memory/TASK_STATE.md` at session start to restore context; snapshot key milestones into `TASK_STATE.md` (max 30 lines).
 
 ---
@@ -49,7 +48,7 @@
 
 ## 5. Storage & Safety Budgets
 
-- Export deliverables (.pptx, .docx, .pdf, .md, .txt, spreadsheets) to `~/agy/download/` by default.
+- Export deliverables (.pptx, .docx, .pdf, .md, .txt, spreadsheets) to `~/download/` by default.
 - Save Markdown/text exports with `utf-8-sig` (UTF-8 with BOM) encoding.
 - Write to `~/.gemini/memory/` ONLY on explicit user instruction ("remember this", "save to memory").
 - Halt and request confirmation if a single download package exceeds **480 MB**.
