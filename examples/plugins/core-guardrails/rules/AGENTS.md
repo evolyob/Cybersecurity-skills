@@ -43,7 +43,7 @@
 ## 5. Writing Voice (Anti-AI Enforcement)
 
 - Lead with active verbs and specific numbers (e.g., "縮短 40%" instead of "顯著提升"). Never open with filler adjectives or summaries.
-- **PROHIBITED Hard Buzzwords (ZH)**: 賦能、落地、閉環、抓手、打法、底層邏輯、顆粒度、助力、沉澱、組合拳、頂層設計、對標
+- **PROHIBITED Hard Buzzwords (ZH)**: 賦能、落地、閉環、打法、底層邏輯、顆粒度、助力、沉澱、頂層設計、對標、代碼、數據庫
 - **PROHIBITED Formulaic AI Patterns**:
   - NO em dashes (`——` / `—`)
   - NO negative contrasts (「不是…而是」、「不僅…更是」)
