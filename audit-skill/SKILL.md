@@ -1,13 +1,13 @@
 ---
 name: audit-skill
-description: Audits skills, Python code, and frontend web assets against quantitative context-efficiency, security boundaries, and Lazy Senior engineering standards.
+description: Audits skills and Python scripts against quantitative context-efficiency, Lazy Senior standards, security boundaries, and predictability metrics.
 dependencies: []
 ---
 
-# Universal Skill & Code Auditor
+# Senior Skill & Python Code Auditor
 
 ## Objective
-Provide automated quality, defensive bounds, and security guardrail auditing for skills, Markdown specifications, Python scripts, and frontend web assets.
+Provide automated 12-Gate quality, defensive bounds, and security guardrail auditing for skills, Markdown specifications, and Python scripts.
 
 ---
 
@@ -23,21 +23,22 @@ Provide automated quality, defensive bounds, and security guardrail auditing for
 
 ## Execution Workflow
 
-### Step 1: Execute Automated Auditor
-- **Action**: Run the target engine based on file type in a single tool call:
-  - **Skills, Python & Markdown**: `python3 <skill_dir>/scripts/audit.py <target_path>`
-  - **Frontend Assets (JS/TS/Vue/HTML)**: `python3 <skill_dir>/scripts/audit_frontend.py <target_path>`
-- **Core Automated Gates**:
-  - **Quality & Bounds**: Zero-EOL (Python >= 3.13, Node >= 24 LTS), explicit dependency declarations, stdlib priority, clean imports, encoding safety, line budget.
+### Step 1: Execute Automated One-Shot Auditor
+- **Action**: Run the universal auditor in a single tool call:
+  ```bash
+  python3 <skill_dir>/scripts/audit.py <target_path>
+  ```
+- **12 Automated Gates**:
+  - **Quality & Bounds**: Zero-EOL (Python >= 3.13, Node >= 24 LTS), explicit dependency declarations (Frontmatter & Pre-flight check), stdlib priority, clean imports, encoding safety, line budget.
   - **Markdown & Layout**: 4-backtick nesting, code fence balance, path purity, embedded snippet validation.
-  - **Security Guardrails**: Zero plaintext secrets, zero privilege escalation, zero dynamic execution, zero prompt injections, DOMPurify XSS defenses.
+  - **Security Guardrails**: Zero plaintext secrets, zero privilege escalation, zero dynamic execution, zero prompt injections.
 
 ### Step 2: Fact-Based Findings Report
 - **Action**: Summarize audit output using the **1-2-3 Fact-Based format**:
   1. `Finding`: The factual condition observed (`PASS`, `WARN`, or `FAIL`).
-  2. `Objective Evidence`: Exact line numbers, files, and metrics from the audit output.
+  2. `Objective Evidence`: Exact line numbers, files, and metrics from `audit.py`.
   3. `Requirement`: The explicit rule or threshold.
 
 ### Step 3: User Gate & Remediation
-- **Action**: If blockers or advisories exist and the user requests fixes, consult `references/remediation_guide.md` to propose concrete diffs.
+- **Action**: If blockers/advisories exist and user requests fixes, consult `references/remediation_guide.md` to propose concrete diffs.
 - **Criteria**: Obtain explicit approval before modifying any files.
