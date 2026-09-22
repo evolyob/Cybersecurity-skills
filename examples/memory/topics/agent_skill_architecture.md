@@ -31,19 +31,3 @@
 3. **No Ghost Tools**: Every script named in `SKILL.md` MUST physically exist in `scripts/`. Never reference unbuilt scripts.
 4. **No Silent Ambiguity**: When input matches multiple categories equally, return `candidates: ["A", "B"]` for user clarification. Never guess.
 5. **No Data Drift**: Documented counts, flags, and schema fields MUST match underlying data assets exactly.
-
----
-
-## 5. Composable CLI & Pre-Delivery Checklist
-- CLI scripts MUST provide structured output flags (`--format markdown`, `--json`) for one-shot execution without manual assembly.
-
-| Phase | Check |
-|---|---|
-| Spec | Non-Goals explicitly defined? |
-| Data | Flat with zero envelope nesting? |
-| Script | Python stdlib only? |
-| CLI | One-shot execution via flags? |
-| Integrity | All `SKILL.md` tools physically exist? |
-| Purity | No prompt-script contradictions? |
-| Test | Unit tests pass with zero failures? |
-| Ambiguity | Ambiguous inputs return candidate choices? |
