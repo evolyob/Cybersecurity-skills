@@ -1,6 +1,6 @@
 # Agent Architecture & Skill Lifecycle Guide
 
-> **Role**: Unified reference for knowledge representation principles, Python/LLM division of labor, and skill build execution.
+> **Role**: Unified reference for knowledge representation and the 4-step skill build contract.
 
 ---
 
@@ -10,24 +10,8 @@
 
 ---
 
-## 2. Division of Labor: Python vs LLM (分工明確)
-- **Deterministic Computation**: Python handles 100% of arithmetic, data filtering, keyword indexing, and schema validation. Never offload math or lookup logic to LLM deduction.
-- **Cognitive Orchestration**: LLM handles intent classification, candidate selection, user clarification, and compact formatting (surgical diffs, ASCII trees, terminal box-drawing diagrams).
-- **Contract Enforcement**: Hard boundaries (Non-Goals, Allowed Paths, Verification Commands) MUST be defined before any code execution begins.
-
----
-
-## 3. Skill Build Flow (4-Step Standard)
-1. **Spec First** (`spec_template.md`): Freeze Goal, Non-Goals, Allowed Paths, Dependencies, Acceptance Criteria.
-2. **Data Structure** (`SKILL_DATA_SPEC.md`): Flat list default (Pattern A), zero envelope wrapping. Build in-memory inverted index when items > 20 (O(1) lookup).
-3. **Core Script** (`senior_coding_laws.md`): Python stdlib only (`scripts/<module>.py`). Max `if` nesting <= 2. Python computes; LLM formats.
-4. **Semantic Test Anchors** (`tests/`): Lock edge cases, ambiguous matches, and naming collisions with deterministic unit tests.
-
----
-
-## 4. Evolution Traps to Reject (MUST NOT)
-1. **No Cognitive Dump**: Never delete Python analyzer scripts to make LLM deduce rules. Keep computation in Python.
-2. **No Script Paradox**: Never instruct LLM to avoid rigid templates if the script outputs fixed templates. Script output IS the baseline.
-3. **No Ghost Tools**: Every script named in `SKILL.md` MUST physically exist in `scripts/`. Never reference unbuilt scripts.
-4. **No Silent Ambiguity**: When input matches multiple categories equally, return `candidates: ["A", "B"]` for user clarification. Never guess.
-5. **No Data Drift**: Documented counts, flags, and schema fields MUST match underlying data assets exactly.
+## 2. Skill Build & Validation Standard (4-Step Flow)
+1. **Spec First** (`spec_template.md`): Freeze Goal, Non-Goals, Whitelist Paths, Zero-EOL Dependencies, and Acceptance Criteria.
+2. **Data Structure** (`SKILL_DATA_SPEC.md`): Flat list default (Pattern A), zero envelope tax. Build in-memory inverted index when items > 20 (O(1) lookup). Data schema and documented counts MUST match physical assets exactly.
+3. **Core Script & Tool Integrity** (`senior_coding_laws.md`): Python stdlib prioritized (`scripts/<module>.py`), max block nesting depth <= 2. All scripts referenced in `SKILL.md` MUST physically exist in `scripts/` (zero ghost tools; zero script paradox).
+4. **Semantic Test Anchors** (`tests/`): Lock edge cases and naming collisions with unit tests. When input matches multiple categories equally, return candidate choices (`["A", "B"]`) for clarification rather than guessing.
