@@ -22,10 +22,10 @@
 
 ## 2. Active Domain Topics (`topics/`)
 
-### 1. Agent Architecture & Skill Lifecycle Guide
-- **Domain**: 4-Step Skill Build Flow, Data Structure & Semantic Test Anchors
+### 1. Agent Skill & Security Architecture Guide
+- **Domain**: 4-Step Skill Build Flow, Data Structure, Cryptographic Primitives, CIS/OWASP Compliance, Zero-EOL Runtimes
 - **Topic Path**: `topics/agent_skill_architecture.md`
-- **Keywords / Triggers**: Skill Build, Spec First, SKILL_DATA_SPEC, Test Anchors, Semantic Test, Vibe Skill
+- **Keywords / Triggers**: Skill Build, Spec First, SKILL_DATA_SPEC, Test Anchors, Security Compliance, Cryptography, OWASP, ASVS, CIS Benchmarks, PEP 594
 
 ### 2. Threat Intelligence Reporting Checklist
 - **Domain**: Security Intelligence, CYFIRMA DeTCT Analysis
@@ -36,3 +36,8 @@
 - **Domain**: Teams Graph API, Unstructured Data Extraction, Excel Archiving
 - **Topic Path**: `topics/teams_power_automate_scan.md`
 - **Keywords / Triggers**: Teams Scan, 更版掃描統計表, Graph API Beta, Manual Confirmation, Thread Replies
+
+### 4. Visual Layout Skeletons
+- **Domain**: High-Density Markdown Layouts, Bento Cards, Comparison Tables, Mermaid Topologies
+- **Topic Path**: `topics/visual_layout.md`
+- **Keywords / Triggers**: Layout Skeletons, Bento Grid, Visual Skeletons, Architecture Topology, Strategy Cards
