@@ -8,7 +8,7 @@
 ## 1. Decision & Dispatch Flow
 
 When structural grounding is required beyond Line 1:
-1. **Route Destination**: If a specialized Skill is active, delegate layout entirely to the Skill's spec. Otherwise, proceed below.
+1. **Route Destination**: If delegating output to a dedicated Skill, defer to that Skill's specification. Otherwise, proceed below.
 2. **Match Domain Pattern**: Classify topic as Strategy, Operations, or Architecture, then select a skeleton from Section 2.
 3. **Verify Data Slots**: Ensure all mandatory fields (Requires: ...) are present before rendering.
 
