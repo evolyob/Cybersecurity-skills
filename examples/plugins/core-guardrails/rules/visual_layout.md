@@ -15,7 +15,7 @@
 ## 2. Visual Layout Skeletons
 
 ### Strategy :
-- **Metric Cards**: 3 to 4 metric badges with delta `▲/▼`. (Requires: metric label, numerical value, delta `▲/▼`, optional baseline note).
+- **KPI Row Cards**: 3 to 4 metric badges with delta `▲/▼`. (Requires: metric label, numerical value, delta `▲/▼`, optional baseline note).
 - **Strategic Matrix**: 2x2 quadrant grid. (Requires: 2 evaluation axes, 4 quadrants with 2 bullet items each).
 - **Executive Bento**: Top-level overview layout. (Requires: 3 strategic pillar cards + 2 quantified big-number metrics).
 - **Progress Gauges**: 2 to 3 comparative horizontal bars or donut rings. (Requires: category labels, numeric percentages, target benchmark).
