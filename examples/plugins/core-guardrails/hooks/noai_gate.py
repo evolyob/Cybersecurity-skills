@@ -40,12 +40,31 @@ def main() -> None:
 
     # Context Reconstruction: 局部代換時重組完整文本，杜絕反引號上下文脫節
     text = args.get("CodeContent") or ""
-    if not text and target.is_file() and "TargetContent" in args:
-        text = target.read_text(encoding="utf-8", errors="ignore").replace(args["TargetContent"], args.get("ReplacementContent", ""), 1)
-    text = text or args.get("ReplacementContent") or ""
+    check_line_start, check_line_end = 1, None
+    target_content = args.get("TargetContent")
+    replacement_content = args.get("ReplacementContent") or ""
+
+    if not text and target.is_file() and target_content:
+        orig = target.read_text(encoding="utf-8", errors="ignore")
+        idx = orig.find(target_content)
+        if idx != -1:
+            check_line_start = orig[:idx].count("\n") + 1
+            check_line_end = check_line_start + replacement_content.count("\n")
+            text = orig[:idx] + replacement_content + orig[idx + len(target_content):]
+    text = text or replacement_content
+
+    tech_denies = []
+    for k, v in rules.get("tech_terms_zh", {}).items():
+        if k in v:
+            prefix = v[:v.index(k)]
+            suffix = v[v.index(k)+len(k):]
+            pat = f"(?<!{re.escape(prefix)}){re.escape(k)}(?!{re.escape(suffix)})" if prefix or suffix else re.escape(k)
+            tech_denies.append(pat)
+        else:
+            tech_denies.append(re.escape(k))
 
     denies = [re.escape(w) for w in rules.get("hard_buzzwords_zh", [])] + \
-             [re.escape(k) for k in rules.get("tech_terms_zh", {}).keys()] + \
+             tech_denies + \
              [p["regex"] for p in rules.get("formulaic_patterns_zh", []) + rules.get("patterns_en", [])]
     deny_re = re.compile(f"({'|'.join(denies)})", re.IGNORECASE)
     context_whitelists = rules.get("contextual_whitelists_zh", {})
@@ -62,6 +81,9 @@ def main() -> None:
             continue
 
         if in_code or not s:
+            continue
+
+        if check_line_end is not None and not (check_line_start <= line_num <= check_line_end):
             continue
 
         prose = re.sub(r"`[^`\n]+`", "", raw_line)
