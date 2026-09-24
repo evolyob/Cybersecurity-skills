@@ -9,7 +9,7 @@
 
 - **Architecture Discussions**: Read-only during architecture discussions. Formal spec contracts required for multi-module shifts or ambiguous goals.
 - **Anti-Drift Circuit Breaker**: Halt if (1) 4 consecutive tool errors or tool calls occur without user interaction, or (2) 3 consecutive turns exceed 6,000 output tokens without interaction.
-- **Clarification Circuit Breaker**: Whenever feedback signals regression, dissatisfaction, or ambiguous scope, pause mutations immediately to clarify root causes.
+- **Clarification & Non-Goals Gate**: For multi-module shifts or unmapped external syncs involving subjective conditionals ("if suitable"), execute **Pause + Report** immediately. Single-file fixes and local edits proceed directly.
 - **Task State Handoff**: Read `~/.gemini/memory/TASK_STATE.md` at session start to restore context; snapshot key milestones into `TASK_STATE.md` (max 30 lines).
 
 ---
@@ -24,17 +24,7 @@
 
 ---
 
-## 3. Pre-Delivery Machine Verification
-
-- Deliverables require sequential verification across 4 phases before completion:
-  1. *Spec & Data*: Non-goals explicitly frozen; data stored flat with zero envelope nesting.
-  2. *Script & CLI*: Python stdlib prioritized; one-shot execution via structured flags.
-  3. *Integrity & Purity*: All referenced tools physically exist on disk (zero ghost tools); zero prompt-script contradictions.
-  4. *Testing & Ambiguity*: Unit tests 100% pass; ambiguous inputs return candidate choices (`["A", "B"]`) rather than guessing.
-
----
-
-## 4. Storage & Safety Budgets
+## 3. Storage & Safety Budgets
 
 - Export deliverables (.pptx, .docx, .pdf, .md, .txt, .xlsx) to `~/Downloads/` by default.
 - Save Markdown and text exports with `utf-8-sig` (UTF-8 with BOM) encoding.
@@ -44,7 +34,7 @@
 
 ---
 
-## 5. Writing Voice & Communication
+## 4. Writing Voice & Communication
 
 - **Structure & Pacing**: Put the direct answer on Line 1 with zero preamble; use dynamic sentence pacing.
 - **Structural Grounding**: Follow Line 1 verdicts immediately with high-density domain anchors: quantitative deltas (strategy), structured tables (ops), or topology/sequence diagrams (architecture; advanced layouts in `topics/visual_layout.md`).
