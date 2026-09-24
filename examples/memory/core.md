@@ -27,17 +27,7 @@
 - **Topic Path**: `topics/agent_skill_architecture.md`
 - **Keywords / Triggers**: Skill Build, Spec First, SKILL_DATA_SPEC, Test Anchors, Security Compliance, Cryptography, OWASP, ASVS, CIS Benchmarks, PEP 594
 
-### 2. Threat Intelligence Reporting Checklist
-- **Domain**: Security Intelligence, CYFIRMA DeTCT Analysis
-- **Topic Path**: `topics/cyfirma_detct_checklist.md`
-- **Keywords / Triggers**: CYFIRMA, DeTCT, Threat Report, Phishing, Dark Web Leaks, Domain Reputation
-
-### 3. Teams Automation & Archiving Playbook
-- **Domain**: Teams Graph API, Unstructured Data Extraction, Excel Archiving
-- **Topic Path**: `topics/teams_power_automate_scan.md`
-- **Keywords / Triggers**: Teams Scan, 更版掃描統計表, Graph API Beta, Manual Confirmation, Thread Replies
-
-### 4. Visual Layout Skeletons
+### 2. Visual Layout Skeletons
 - **Domain**: High-Density Markdown Layouts, Bento Cards, Comparison Tables, Mermaid Topologies
 - **Topic Path**: `topics/visual_layout.md`
 - **Keywords / Triggers**: Layout Skeletons, Bento Grid, Visual Skeletons, Architecture Topology, Strategy Cards
