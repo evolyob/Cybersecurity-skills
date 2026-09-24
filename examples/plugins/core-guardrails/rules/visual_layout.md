@@ -9,18 +9,28 @@
 
 Follow this sequence before emitting layout blocks:
 1. **Identify Domain**: Classify the topic as Strategy, Operations, or Architecture.
-2. **Select Component**: Match the domain to the mandatory anchor primitive in Section 2.
-3. **Apply Proportions**: Enforce width limits, symmetry rules, and item caps.
+2. **Select Pattern**: Match the domain to the mandatory visual layout pattern in Section 2.
+3. **Dispatch to Output**: Render directly in Markdown/Mermaid or hand off to specialized skills.
 
 ---
 
-## 2. Decision Matrix
+## 2. Visual Layout Skeletons
 
-| Domain | Anchor Type | Universal Component | Balance Guardrails | When to Use (Use Case) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Strategy** | Quantitative deltas | **Metric Cards (Row)**<br>(100% full width) | 3 to 4 cards max. Center numbers with delta `▲/▼`. Subtitle <= 8 words. | Standalone metrics, SLA %, latency drop, cost savings. |
-| **Strategy** | Quantitative deltas | **2x2 Quadrant Grid**<br>(100% full width) | 2x2 grid. Equal text density. Exactly 2 bullet points per quadrant. | P0 to P3 priorities, Quick Wins (High Impact / Low Effort). |
-| **Ops** | Structured tables | **Comparison Split**<br>(50/50 split) | 2 equal columns. Left-to-right character length ratio <= 1.5x. | As-Is vs To-Be comparisons, Pain Points vs Solutions. |
-| **Ops** | Structured tables | **Structured Data Table**<br>(100% full width) | 3 to 4 columns. Uniform column widths. Concise table headers. | Compliance audits, security control lists, asset inventory. |
-| **Ops** | Structured tables | **Linear Progression**<br>(100% full width) | 4 horizontal phases. Equal text length per step. Left-to-right flow. | SOP steps, 4-phase incident response (Triage -> Review). |
-| **Architecture** | Topology / Sequence | **Topology Diagram**<br>(100% full width) | Full-width container. 5 to 8 nodes total. Single flow direction (LR/TD). | Service topology, API auth sequence (JWT), entity relations. |
+### Strategy :
+- **Metric Cards**: 3 to 4 metric badges with delta `▲/▼`. (Requires: metric label, numerical value, delta `▲/▼`, optional baseline note).
+- **Strategic Matrix**: 2x2 quadrant grid. (Requires: 2 evaluation axes, 4 quadrants with 2 bullet items each).
+- **Executive Bento**: Top-level overview layout. (Requires: 3 strategic pillar cards + 2 quantified big-number metrics).
+- **Progress Gauges**: 2 to 3 comparative horizontal bars or donut rings. (Requires: category labels, numeric percentages, target benchmark).
+
+### Operations :
+- **Comparison Split**: 50/50 balanced dual columns. (Requires: left vs right symmetric entities, paired points).
+- **Checklist Grid**: Dual-column verification readiness gates. (Requires: gate categories, check items with `✓` / `✖` status).
+- **Pipeline Flow**: 4 horizontal sequential phases. (Requires: 4 sequential phase names, action verbs, transition flow).
+- **Data Table**: 3 to 4 structured columns. (Requires: clear column headers, homogeneous structured row records).
+- **Timeline**: Chronological horizontal baseline with milestones. (Requires: date/phase sequence, milestone deliverables).
+
+### Architecture :
+- **Pillar Grid**: 3 to 4 vertical capability or structural pillar cards. (Requires: 3 to 4 pillar titles, category tags, bulleted core tenets).
+- **Anchor Card**: Upper central anchor + 2 to 3 lower sub-cards. (Requires: 1 foundational core mandate + 2 to 3 modular sub-domains).
+- **Editorial Tree**: Hierarchical root + 90° T-split branches. (Requires: 1 root node + 2-tier parent-child structural nodes).
+- **Topology Flow**: Full-width container with 5 to 8 nodes. (Requires: 5 to 8 entity nodes, directional source-to-target flows).
