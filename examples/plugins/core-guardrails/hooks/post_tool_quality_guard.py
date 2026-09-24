@@ -12,8 +12,13 @@ import json
 import re
 from pathlib import Path
 
-# Path pattern constructed to avoid self-flagging in AST auditors
-PATH_REGEX = re.compile(r"/(?:Us" + r"ers|ho" + r"me)/[a-zA-Z0-9_-]+/")
+# Path pattern constructed to detect host paths (Unix homes, root, Windows drive letters, UNC)
+PATH_REGEX = re.compile(
+    r"(?:/(?:Users|home)/[a-zA-Z0-9_-]+/"
+    r"|/root/"
+    r"|[a-zA-Z]:[\\/]"
+    r"|\\\\[a-zA-Z0-9_.-]+\\[a-zA-Z0-9_.-]+)"
+)
 
 def check_path_leakage(content: str, filename: str) -> None:
     # Exclude documentation files that document the rule or regex definitions
@@ -22,7 +27,7 @@ def check_path_leakage(content: str, filename: str) -> None:
 
     leaks = []
     for idx, line in enumerate(content.splitlines(), start=1):
-        if 're.search' in line or 'Zero-Leakage' in line or 'Path Leakage' in line:
+        if 're.search' in line or 'Zero-Leakage' in line or 'Path Leakage' in line or 'PATH_REGEX' in line:
             continue
         if PATH_REGEX.search(line):
             leaks.append(f"Line {idx}: {line.strip()[:75]}")
