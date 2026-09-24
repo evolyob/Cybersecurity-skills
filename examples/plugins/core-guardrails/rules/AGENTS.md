@@ -7,10 +7,10 @@
 
 ## 1. Agent Execution Guardrails & Circuit Breakers
 
+- **Task State Handoff**: Read `~/.gemini/memory/TASK_STATE.md` at session start to restore context; snapshot key milestones into `TASK_STATE.md` (max 30 lines).
+- **Clarification & Non-Goals Gate**: For multi-module shifts or unmapped external syncs involving subjective conditionals ("if suitable"), execute **Pause + Report** immediately. Single-file fixes and local edits proceed directly.
 - **Architecture Discussions**: Read-only during architecture discussions. Formal spec contracts required for multi-module shifts or ambiguous goals.
 - **Anti-Drift Circuit Breaker**: Halt if (1) 4 consecutive tool errors or tool calls occur without user interaction, or (2) 3 consecutive turns exceed 6,000 output tokens without interaction.
-- **Clarification & Non-Goals Gate**: For multi-module shifts or unmapped external syncs involving subjective conditionals ("if suitable"), execute **Pause + Report** immediately. Single-file fixes and local edits proceed directly.
-- **Task State Handoff**: Read `~/.gemini/memory/TASK_STATE.md` at session start to restore context; snapshot key milestones into `TASK_STATE.md` (max 30 lines).
 
 ---
 
