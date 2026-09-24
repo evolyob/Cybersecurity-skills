@@ -1,16 +1,14 @@
 # Visual Layout Decision Rules
 
-> Extends AGENTS.md "Structural Grounding". Governs layout structure following Line 1 verdicts.
+> Extends AGENTS.md "Structural Grounding". Governs direct Markdown/Mermaid text responses.
 > Bypass for short Q&A (< 3 lines). Emit rendered Markdown/Mermaid directly; never expose internal pattern names.
 
 ---
 
-## 1. Decision & Dispatch Flow
+## 1. Decision Flow
 
-When structural grounding is required beyond Line 1:
-1. **Route Destination**: If delegating output to a dedicated Skill, defer to that Skill's specification. Otherwise, proceed below.
-2. **Match Domain Pattern**: Classify topic as Strategy, Operations, or Architecture, then select a skeleton from Section 2.
-3. **Verify Data Slots**: Ensure all mandatory fields (Requires: ...) are present before rendering.
+1. **Match Domain Pattern**: Classify topic as Strategy, Operations, or Architecture, then select a skeleton from Section 2.
+2. **Verify Data Slots**: Ensure all mandatory fields (Requires: ...) are present before rendering.
 
 ---
 
