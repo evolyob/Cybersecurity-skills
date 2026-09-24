@@ -10,7 +10,12 @@ import sys
 from pathlib import Path
 
 PEP_594_REMOVED = {"cgi", "cgitb", "pipes", "crypt", "imghdr", "sndhdr", "aifc", "audioop", "chunk", "mailcap", "nntplib", "sunau", "telnetlib", "uu", "xdrlib", "distutils"}
-SECRETS = [r"sk-[a-zA-Z0-9]{20,}", r"AKIA[0-9A-Z]{16}", r"-----BEGIN [A-Z]+ PRIVATE KEY-----"]
+SECRETS = [
+    r"sk-[a-zA-Z0-9]{20,}",
+    r"AKIA[0-9A-Z]{16}",
+    r"-----BEGIN [A-Z]+ PRIVATE KEY-----",
+    r"(?i)\b(?:password|passwd|pwd)\s*[:=]\s*['\"](?!(?:test|mock|fake|dummy|example|xxxx|admin|placeholder|sample|changeme))[^'\"\s]{6,}['\"]",
+]
 PRIVS = ["su" + "do ", "ch" + "mod +x", "ch" + "own ", "/et" + "c/shadow", "/et" + "c/passwd"]
 FRONTEND_EXTS = {".html", ".htm", ".js", ".mjs", ".ts", ".jsx", ".tsx", ".vue"}
 
