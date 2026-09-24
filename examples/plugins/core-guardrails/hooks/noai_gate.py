@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""
-Anti-AI PreToolUse Gate (Senior Coding Laws Edition)
-- Step 1: Standard library only (sys, json, re, pathlib)
-- Step 2: SSOT rules & code block stack stripper
-- Step 3: Zero-nesting Guard Clauses & flattened flow
-- Step 4: Line-level actionable diagnostics
-- Step 5: Subtractive engineering (negative net lines)
-"""
+"""Anti-AI PreToolUse Gate: Stdlib only, zero-nesting guard clauses, and delta line checking."""
 import sys, json, re
 from pathlib import Path
 
@@ -53,16 +46,13 @@ def main() -> None:
             text = orig[:idx] + replacement_content + orig[idx + len(target_content):]
     text = text or replacement_content
 
-    tech_denies = []
-    for k, v in rules.get("tech_terms_zh", {}).items():
-        if k in v:
-            prefix = v[:v.index(k)]
-            suffix = v[v.index(k)+len(k):]
-            pat = f"(?<!{re.escape(prefix)}){re.escape(k)}(?!{re.escape(suffix)})" if prefix or suffix else re.escape(k)
-            tech_denies.append(pat)
-        else:
-            tech_denies.append(re.escape(k))
-
+    tech_denies = [
+        ((f"(?<!{re.escape(v[:v.index(k)])})" if v[:v.index(k)] else "") +
+         re.escape(k) +
+         (f"(?!{re.escape(v[v.index(k)+len(k):])})" if v[v.index(k)+len(k):] else ""))
+        if k in v else re.escape(k)
+        for k, v in rules.get("tech_terms_zh", {}).items()
+    ]
     denies = [re.escape(w) for w in rules.get("hard_buzzwords_zh", [])] + \
              tech_denies + \
              [p["regex"] for p in rules.get("formulaic_patterns_zh", []) + rules.get("patterns_en", [])]
@@ -72,11 +62,10 @@ def main() -> None:
     in_code, fence = False, ""
     for line_num, raw_line in enumerate(text.splitlines(), start=1):
         s = raw_line.strip()
-        if not in_code:
-            if s.startswith("````") or s.startswith("```"):
-                in_code, fence = True, ("````" if s.startswith("````") else "```")
-                continue
-        elif s.startswith(fence):
+        if not in_code and (s.startswith("````") or s.startswith("```")):
+            in_code, fence = True, ("````" if s.startswith("````") else "```")
+            continue
+        if in_code and s.startswith(fence):
             in_code = False
             continue
 
