@@ -20,7 +20,6 @@
 - **Deterministic Offloading**: 100% of arithmetic, keyword indexing, filtering, and schema parsing MUST run via scripts or tools; never offload to LLM reasoning.
 - **Flat Control Flow**: Enforce guard clauses with early returns (linear happy path at indent 0); maximum block nesting depth <= 2.
 - **Structured CLI Output**: CLI scripts MUST provide direct structured output flags (e.g., `--format markdown`, `--json`) for one-shot execution without manual assembly. Always emit predictable schemas matching contracts.
-- **Syntax & Markdown Parity**: Plain-text sources (`.md`, `.txt`) must pass syntax inspection; markdown code fences must use balanced 4-backtick nesting when wrapping code blocks.
 
 ---
 
