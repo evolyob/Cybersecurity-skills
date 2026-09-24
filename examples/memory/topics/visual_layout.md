@@ -2,6 +2,7 @@
 
 > Extends AGENTS.md "Structural Grounding". Governs layout structure following Line 1 verdicts.
 > Bypass for short Q&A (< 3 lines). Emit rendered Markdown/Mermaid directly; never expose internal pattern names.
+> CLI Rendering: Enforce left-anchored open layouts (trees, vertical rails `│`, native tables). Avoid right-closed box borders to prevent terminal wrap glitches.
 
 ---
 
