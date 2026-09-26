@@ -55,6 +55,20 @@
       }
     ]
   },
+  "view-file-safety-guard": {
+    "PreToolUse": [
+      {
+        "matcher": "view_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./hooks/view_file_safety.py",
+            "timeout": 2
+          }
+        ]
+      }
+    ]
+  },
   "post-tool-quality-guard": {
     "PostToolUse": [
       {
