@@ -1,8 +1,7 @@
 # Visual Layout Decision Rules
 
 > Extends AGENTS.md "Structural Grounding". Governs layout structure following Line 1 verdicts.
-> Bypass for short Q&A (< 3 lines). Emit rendered Markdown/Mermaid directly; never expose internal pattern names.
-> CLI Rendering: Enforce left-anchored open layouts (trees, vertical rails `│`, native tables). Avoid right-closed box borders to prevent terminal wrap glitches.
+> CLI Chat: ONLY use numbered lists (1.), tables (|), Unicode trees (├─), or vertical rails (│); NEVER emit Mermaid.
 
 ---
 
@@ -20,7 +19,7 @@ When structural grounding is required beyond Line 1:
 ### Strategy
 > Use when the output communicates direction, prioritization, or executive judgment.
 
-- **Metric Cards**: 3–4 metric badges with delta `▲/▼`.
+- **KPI Cards**: 3–4 metric badges with delta `▲/▼`.
   _(Requires: metric label, numerical value, delta `▲/▼`, optional baseline note)_
 - **Strategic Matrix**: 2×2 quadrant grid.
   _(Requires: 2 evaluation axes, 4 quadrants each with 2 bullet items)_
@@ -36,19 +35,19 @@ When structural grounding is required beyond Line 1:
 
 - **Comparison Split**: Side-by-side dual panel (Before/After, Current/Target, Problem/Solution).
   _(Requires: 2 panel labels, 3–5 bullet points per panel)_
-- **Process Timeline**: Sequential step flow with status indicators.
+- **Process Pipeline**: Sequential step flow with status indicators.
   _(Requires: step labels ordered chronologically, status per step `✓/▶/○`, owner or date optional)_
-- **Status Dashboard**: RAG traffic-light summary per workstream.
+- **Status Table**: RAG traffic-light summary per workstream.
   _(Requires: workstream names, status `●Red/●Amber/●Green`, one-line rationale per row)_
-- **Issue–Action Table**: Structured log of risks and mitigations.
-  _(Requires: issue description, owner, deadline, status; minimum 3 rows)_
+- **Action Checklist**: Dual-column auditable verification or milestone readiness checklist.
+  _(Requires: verification items, binary status cues `✓/○` or `[x]/[ ]`, owner or gate note; 4–6 items)_
 
 ---
 
 ### Architecture
 > Use when the output maps system components, data flows, or structural hierarchies.
 
-- **System Block Diagram**: Component topology with directional connections (Mermaid `flowchart LR`).
+- **Topology Diagram**: Service or component topology with directional connections.
   _(Requires: named components, labeled edges, max 2 focal accent nodes)_
 - **Sequence Flow**: Time-ordered interactions between actors (Mermaid `sequenceDiagram`).
   _(Requires: actor names, ordered message labels, at least 3 exchanges)_
