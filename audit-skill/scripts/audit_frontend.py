@@ -3,7 +3,13 @@
 import re, sys, urllib.parse, urllib.request
 from pathlib import Path
 
-SECRETS = [r"sk-[a-zA-Z0-9]{20,}", r"AKIA[0-9A-Z]{16}", r"-----BEGIN [A-Z]+ PRIVATE KEY-----"]
+SECRETS = [
+    r"sk-[a-zA-Z0-9]{20,}",
+    r"AKIA[0-9A-Z]{16}",
+    r"-----BEGIN [A-Z]+ PRIVATE KEY-----",
+    r"(?i)\b(?:password|passwd|pwd)\s*[:=]\s*['\"](?!(?:test|mock|fake|dummy|example|xxxx|admin|placeholder|sample|changeme))[^'\"\s]{6,}['\"]",
+]
+PATH_RE = re.compile(r'(?:/(?:Us' + r'ers|ho' + r'me)/[a-zA-Z0-9_-]+/|/ro' + r'ot/|[a-zA-Z]:[/\\\\]|\\\\[a-zA-Z0-9_.-]+[/\\\\])')
 PKG_RE = re.compile(
     r'(?:\b(?:import|from)\s+["\x27]|require\s*\(\s*["\x27]|import\s*\(\s*["\x27]|'
     r'/\*!\s*(?:\*\s*)?(?:@license\s+)?|github\.com/[^/]+/|'
@@ -16,7 +22,7 @@ def audit_content(src, filename, size_bytes=0):
     checks = [
         (any(re.search(s, src) for s in SECRETS), b, "Plaintext secret / API key detected"),
         (re.search(r"\b(192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)\b", src), w, "Internal private IP exposed"),
-        (("/Us" + "ers/") in src or ("/ho" + "me/") in src, b, "Hardcoded local absolute user path"),
+        (bool(PATH_RE.search(src)), b, "Hardcoded local absolute user path"),
         (re.search(r"\b(openDatabase|showModalDialog)\s*\(", src), b, "Dead Web API (EOL in modern browsers)"),
         (re.search(r"document\.write\s*\(", src), b, "Dangerous 'document.write()' call"),
         (re.search(r'\beval\s*\(|new\s+Function\s*\(', src), b, "Dynamic code execution (eval or new Function)"),
