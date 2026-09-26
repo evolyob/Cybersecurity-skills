@@ -1,7 +1,7 @@
 # Senior Clean Code & Vibe Craft Guide
 
 Practical engineering awareness standards for clean code architecture and resilient system implementation.
-**Core Philosophy**: Implements the approved spec contract through a sequential 5-step engineering radar. Balance architectural hygiene with pragmatism.
+**Core Philosophy**: Implements the approved spec contract through a sequential 5-step engineering radar. Balance architectural hygiene with pragmatism. Reference case studies: `senior_coding_examples.md`.
 
 ---
 
