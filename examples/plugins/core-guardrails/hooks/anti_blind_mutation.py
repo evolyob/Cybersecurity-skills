@@ -17,10 +17,10 @@ def check_directory_hygiene(target_file: str) -> dict | None:
     if not target_file:
         return None
     # Block writing executable scripts to final delivery directory
-    if re.search(r"/agy/download/.*\.(py|sh)$", target_file):
+    if re.search(r"/downloads/.*\.(py|sh)$", target_file):
         return {
             "decision": "deny",
-            "reason": "【交付目錄防護】~/agy/download/ 為最終交付目錄，嚴禁寫入 .py 或 .sh 腳本！臨時腳本請存放於 scratch/，核心邏輯請整合至既有模組。"
+            "reason": "【交付目錄防護】~/downloads/ 為最終交付目錄，嚴禁寫入 .py 或 .sh 腳本！臨時腳本請存放於 scratch/，核心邏輯請整合至既有模組。"
         }
     return None
 
