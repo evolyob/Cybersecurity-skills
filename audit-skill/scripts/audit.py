@@ -175,6 +175,8 @@ def audit_path(target):
 
     files = [t] if t.is_file() else sorted(p for p in t.glob("**/*") if p.is_file())
     if t.is_dir(): print(f"\n[SKILL AUDIT] -> {t}\n" + "=" * 55)
+    if skill_md and not sec_md:
+        print("[!] WARN SECURITY.md (Missing)\n  └── [ADVISORY] Skill missing recommended file: 'SECURITY.md'")
 
     for f in files:
         if f.suffix.lower() in FRONTEND_EXTS:
