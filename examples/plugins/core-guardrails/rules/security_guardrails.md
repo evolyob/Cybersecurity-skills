@@ -8,7 +8,7 @@
 
 - **File Prohibitions**: PROHIBITED from reading, inspecting, modifying, or outputting credential files (`.ssh`, `.aws`, `.env`, `.kube`, `id_rsa`, `*.pem`).
 - **Environment Injection**: Inject credentials, API tokens, and private keys strictly via environment variables—never hardcode into source code, config files, or test fixtures.
-- **Path Hygiene**: PROHIBITED from hardcoding host absolute paths (`/home/`, `/Users/`, drive letters) in deliverables. Use `pathlib` with relative paths.
+- **Path Hygiene**: PROHIBITED from hardcoding host absolute paths (`/home/`, `/Users/`, `/root/`, drive letters `C:\`, `D:/`, UNC `\\`) in deliverables. When outputting deliverables (.md, .txt, .html), normalize all host paths to `~` or use relative paths.
 
 ---
 

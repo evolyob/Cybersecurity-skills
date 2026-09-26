@@ -7,7 +7,7 @@
 
 ## 1. Agent Execution Guardrails & Circuit Breakers
 
-- **Task State Handoff**: Read `~/.gemini/memory/TASK_STATE.md` at session start to restore context; snapshot key milestones into `TASK_STATE.md` (max 30 lines).
+- **Task State Handoff**: Read `~/.gemini/memory/TASK_STATE.md` at session start. Update `TASK_STATE.md` (max 30 lines) ONLY on the first turn after an idle period (> 30 min), upon major milestone delivery, or via explicit user handoff request.
 - **Clarification & Non-Goals Gate**: For multi-module shifts or unmapped external syncs involving subjective conditionals ("if suitable"), execute **Pause + Report** immediately. Single-file fixes and local edits proceed directly.
 - **Architecture Discussions**: Read-only during architecture discussions. Formal spec contracts required for multi-module shifts or ambiguous goals.
 - **Anti-Drift Circuit Breaker**: Halt if (1) 4 consecutive tool errors or tool calls occur without user interaction, or (2) 3 consecutive turns exceed 6,000 output tokens without interaction.
@@ -25,11 +25,13 @@
 
 ## 3. Storage & Safety Budgets
 
-- Export deliverables (.pptx, .docx, .pdf, .md, .txt, .xlsx) to `~/Downloads/` by default.
-- Save Markdown and text exports with `utf-8-sig` (UTF-8 with BOM) encoding.
-- Write to `~/.gemini/memory/` ONLY on explicit user instruction ("remember this", "save to memory").
-- Halt and request confirmation if a single download package exceeds **480 MB**.
-- Respect the **39 MB** local conversation log cap in `config.json`.
+- **Deliverables & Exports**:
+  - Export deliverables (.pptx, .docx, .pdf, .md, .txt, .xlsx) to `~/agy/download/` by default.
+  - Save Markdown and text exports with `utf-8-sig` (UTF-8 with BOM) encoding.
+  - Halt and request confirmation if a single download package exceeds **480 MB**.
+- **State & Context Limits**:
+  - Write to `~/.gemini/memory/` ONLY on explicit user instruction ("remember this", "save to memory").
+  - Respect the **39 MB** local conversation log cap in `config.json`.
 
 ---
 
